@@ -24,6 +24,7 @@ jobs:
             with:
                 install: true
         -   run: |
+                git describe --tags --long --dirt
                 echo "git_commit=$(git describe --tags --long --dirty)" >> $GITHUB_ENV
                 echo "build_date=$(date --rfc-3339=seconds)" >> $GITHUB_ENV
         -   name: Docker metadata
@@ -33,6 +34,8 @@ jobs:
                 tags: |
                     type=match,pattern=/^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/
                     type=raw,enable=true,priority=200,value=${{ env.GITHUB_SHA }}
+                image: |
+                  foo
         -   name: Build image
             uses: docker/build-push-action@v2
             with:
