@@ -33,7 +33,7 @@ jobs:
             with:
                 tags: |
                     type=match,pattern=/^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/
-                    type=raw,enable=true,priority=200,value=${{ env.GITHUB_SHA }}
+                    type=raw,enable=true,priority=200,value=${{ env.GITHUB_SHA }},event=tag
                 images: |
                   foo
         -   name: Build image
